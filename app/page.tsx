@@ -1,5 +1,6 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -10,6 +11,13 @@ export default function Home() {
       {session ? (
         <>
           <p className="mt-4">Signed in as {session.user?.name}</p>
+          <Image
+            src={`${session.user?.image}`}
+            width={80}
+            height={50}
+            alt="user-img"
+            className="rounded-full p-2"
+          />
           <button
             onClick={() => signOut()}
             className="mt-4 px-4 py-2 bg-red-400 hover:bg-red-500 cursor-pointer text-white rounded"
